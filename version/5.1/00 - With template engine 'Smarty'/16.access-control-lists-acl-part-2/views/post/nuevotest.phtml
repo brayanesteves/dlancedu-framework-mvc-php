@@ -1,0 +1,14 @@
+<script type="text/javascript"></script>
+
+<?php if(isset($this->prueba)) echo $this->prueba; ?>
+<?php if(isset($this->prueba_getInt)) echo $this->prueba_getInt; ?>
+<p></p>
+<form id="form1" method="POST" action="<?php echo BASE_URL; ?>post/nuevotest">
+    <input type="hidden" name="Guardar" value="1" />
+    <p>
+        Titulo:<br/>
+        <input type="text" name="titulo" id="titulo" />
+    </p>
+
+    <input type="submit" class="button" value="Guardar" />
+</form>
