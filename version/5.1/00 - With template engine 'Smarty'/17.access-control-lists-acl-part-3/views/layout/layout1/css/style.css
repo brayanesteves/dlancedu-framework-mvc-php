@@ -1,0 +1,12 @@
+/* CSS Document */
+
+*    { margin:0; padding:0; }
+body { margin:0px; background-image:url(../img/body_bg.jpg); background-repeat:repeat-x; background-color:#3F2F22; font-family:'Helvetica', Arial, Verdana; }
+
+#dvmaincontainer                 { width:900px; margin:0px auto; }
+#dvmaincontainer #dvtopcontainer { float:left; }
+
+#tabs1 a:hover         { background-position:0% - 42px; color:#FFFFFF; }
+#tabs1 a:hover span    { background-position:100% - 42px; color:#FFFFFF; }
+#tabs1 #current a      { background-position:0% - 42px; color:#FFFFFF; }
+#tabs1 #current a span { background-position:100% - 42px; color:#FFFFFF; }

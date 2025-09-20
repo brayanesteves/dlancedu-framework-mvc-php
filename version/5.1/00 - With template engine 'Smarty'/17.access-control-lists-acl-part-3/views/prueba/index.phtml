@@ -1,0 +1,29 @@
+<h2>Últimas Pruebas</h2>
+<?php if(isset($this->pruebas) && count($this->pruebas)): ?>
+<table>
+    <?php for($i = 0; $i < count($this->pruebas); $i++): ?>
+    <tr>
+        <td><?php echo $this->pruebas[$i]['id']; ?></td>
+        <td><?php echo $this->pruebas[$i]['nombre']; ?></td>
+        <td>
+            <a href="<?php echo BASE_URL . 'prueba/editar/' . $this->pruebas[$i]['id']; ?>">Editar</a>
+            <a href="<?php echo BASE_URL . 'prueba/eliminar/' . $this->pruebas[$i]['id']; ?>">Eliminar</a>
+        </td>
+    </tr>
+    <?php endfor; ?>
+</table>
+<?php else: ?>
+<p>
+    <strong>¡No ahi <b>pruebas</b>!</strong>
+</p>
+<?php endif; ?>
+
+<?php if(isset($this->paginacion)): ?>
+<?php echo $this->paginacion; ?>
+<?php endif; ?>
+
+<?php if(Session::accesoViewEstricto(array('especial'))): ?>
+<p>
+    <a href="<?php echo BASE_URL; ?>prueba/nuevo">Agregar Prueba</a>
+</p>
+<?php endif; ?>
