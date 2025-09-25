@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>{$titulo|default:"Sin t&iacute;tulo"}</title>
+        <meta charset="utf-8" />
+        <link href="{$_layoutParams.ruta_css}bootstrap.css" rel="stylesheet" type="text/css" />
+        <style>
+            body { padding-top:40px; padding-bottom:40px; }
+        </style>
+    </head>
+
+    <body>
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="{$_layoutParams.root}">{$_layoutParams.configs.app_name}</a>
+
+                    {if isset($_layoutParams.menu)}
+                        <div class="nav-collapse">
+                            <ul class="nav">
+                                {foreach item=it from=$_layoutParams.menu}
+                                    {if isset($_layoutParams.item) && $_layoutParams.item == $it.id}
+                                        {assign var="_item_style" value='active'}
+                                    {else}
+                                        {assign var="_item_style" value=''}
+                                    {/if}
+                                    <li class="{$_item_style}">
+                                        <a href="{$it.enalce}"><i class="{$it.imagen}"></i></a>
+                                    </li>
+                                {/foreach}
+                            </ul>
+
+                            {if Session::get('autenticado')}
+                                <div class="navbar-form pull-right">
+                                    <a href="{$_layoutParams.root}usuarios/login/cerrar" class="btn">Cerrar Sesi&oacute;n</a>
+                                </div>
+                            {else}
+                                <form class="navbar-form pull-right" method="POST" action="{$_layoutParams.root}login">
+                                    <input type="hidden" name="enviar" value="1" />
+                                    <input type="text" name="usuario" placeholder="Usuario" />
+                                    <input type="password" name="pas" placeholder="Password" />
+                                    <button type="submit" class="btn">Entrar</button>
+                                </form>
+                            {/if}
+                        </div>
+                    {/if}
+                </div>
+            </div>
+        </div>
+
+        <div class="container" style="background:#fff;">
+            <div class="span8">
+                <noscript>Para el correcto funcionamiento debe tener el soporte javascript habilitado.</noscript>
+                {if isset($_error)}
+                    <div id="_msgl" class="alert alert-error">
+                        <a class="close" data-dismiss="alert">x</a>
+                        {$_error}
+                    </div>
+                {/if}
+                
+                {if isset($_mensaje)}
+                    <div id="_msgl" class="alert alert-success">
+                        <a class="close" data-dismiss="alert">x</a>
+                        {$_mensaje}
+                    </div>
+                {/if}
+            </div>
+
+
+            {include file=$_contenido}
+        </div>
+
+        <script type="text/javascript" src="{$_layoutParams.root}public/js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="{$_layoutParams.ruta_js}bootstrap.js"></script>
+        <script type="text/javascript">
+            var _root_ = '{$_layoutParams.root}';
+        </script>
+        
+        {if isset($_layoutParams.js_plugin) && count($_layoutParams.js_plugin)}
+            {foreach item=plg from=$_layoutParams.js_plugin}
+                <script src="{$plg}" type="text/javascript"></script>
+            {/foreach}
+        {/if}
+
+        {if isset($_layoutParams.js) && count($_layoutParams.js)}
+            {foreach item=js from=$_layoutParams.js}
+                <script src="{$js}" type="text/javascript"></script>
+            {/foreach}
+        {/if}
+
+    </body>
+</html>
